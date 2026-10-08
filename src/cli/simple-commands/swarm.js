@@ -743,7 +743,7 @@ exit 0
     }
 
     // Node.js environment - use background script
-    const { execSync } = await import('child_process');
+    const { execFileSync } = await import('child_process');
     const path = await import('path');
     const fs = await import('fs');
 
@@ -771,7 +771,7 @@ exit 0
 
       // Execute the background script
       try {
-        execSync(`"${bgScriptPath}" ${commandArgs.map((arg) => `"${arg}"`).join(' ')}`, {
+        execFileSync(bgScriptPath, commandArgs, {
           stdio: 'inherit',
         });
       } catch (error) {
